@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <!-- bootstrap 5 cdn -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+      <title>Login page</title>
+  
+      <style>
+        body{
+          margin:100px;
+        }
+      </style>
+    </head>
+    <body class="min-vh-100 bg-dark text-light d-flex align-items-center justify-content-center">
+      <form onsubmit="onSubmit(event)" action="#">
+        <input id="name" type="text" placeholder="Please enter your name" name="name" required>
+        <input id="password" type="password" placeholder="Please enter your password" name="password" required>
+        <button type="submit">Save</button>
+  
+        <button type="button" onclick="checkOut()">Checkout my registered data</button>
+      </form>
+  
+      <script>
+        function checkOut(){
+          console.log(localStorage.getItem('name'))
+          console.log(localStorage.getItem('password'))
+        }
+        function onSubmit(event){
+  
+          // how to retrieve data using dom
+          let name = document.getElementById('name').value
+          let password = document.getElementById('password').value
+  
+          console.log(name)
+          console.log(password)
+  
+          // how to retrieve data using FormData
+          let dannye = event.target;
+          // we get form data here
+          let formdata = new FormData(dannye)
+  
+          // turn it into readable object
+          let form_data_obj = Object.fromEntries(formdata)
+          
+          console.log(form_data_obj);
+  
+          localStorage.setItem('name', form_data_obj.name)
+          localStorage.setItem('password',form_data_obj.password)
+  
+          // this is to prevent action from moving into new webpage
+          event.preventDefault();
+        }
+      </script>
+    </body>
+  </html>

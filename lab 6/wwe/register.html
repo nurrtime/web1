@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registration</title>
+</head>
+<body>
+    <div class="register">
+        <div class="container">
+            <div class="register__inner">
+                <form class="form">
+                    <div>
+                        <input type="email" class="email" placeholder="Your email" required>
+                    </div>
+
+                    <div>
+                        <input type="password" class="password" placeholder="Your password" required>
+                    </div>  
+
+                    <div>
+                        <input type="file" class="file">
+                    </div>
+
+                    <div>
+                        <input type="text" class="name" placeholder="Full name" required>
+                    </div>
+
+                    <div>
+                        <input type="date" id="date" class="date" value="2000-05-05" required>
+                    </div>
+
+                    <div>
+                        <input type="datetime" class="datetime" placeholder="Your birth hour">
+                    </div>
+
+                    <div>
+                        <label for="gender">
+                            <input id="gender" type="radio" class="gender" value="Male" required>
+                            Male
+                        </label>
+
+                        <label for="gender2">
+                            <input id="gender2" type="radio" class="gender2" value="Famale" required>
+                            Famale
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="color" class="color">
+                    </div>
+
+                    <div>
+                        <select class="country" name="country" id="country">
+                            <option value="Astana">Astana</option>
+                            <option value="Astana">Aktobe</option>
+                            <option value="Astana">Almaty</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <textarea class="car" name="car" id="car" cols="30" rows="10" placeholder="Favorite Car"></textarea>
+                    </div>
+
+                    <button class="btn">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let email = document.querySelector(".email");
+let password = document.querySelector(".password");
+let file = document.querySelector(".file");
+let name = document.querySelector(".name");
+let date = document.getElementById("date");
+let datetime = document.querySelector(".datetime");
+let male = document.querySelector(".gender");
+let famale = document.querySelector(".gender2");
+let color = document.querySelector(".color");
+let country = document.querySelector(".country");
+let car = document.querySelector(".car");
+let btn = document.querySelector(".btn");
+let currentDate = date.value
+
+let obj = {
+    email: email.value,
+    password: password.value,
+    file: file.value,
+    name: name.value,
+    date: currentDate,
+    datetime: datetime.value,
+    male: male.value,
+    famale: famale.value,
+    color: color.value,
+    country: country.value,
+    car: car.value,
+}
+
+console.log(name.value)
+
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  onSave();
+});
+
+function onSave() {
+  if (
+    email.value !== "" &&
+    password.value !== "" &&
+    name.value !== "" &&
+    date.value !== "" &&
+    male.value !== "" &&
+    famale.value !== "" &&
+    famale.value !== "" 
+  ) {
+    alert("Success save on localStorage");
+    window.localStorage.setItem('data register', JSON.stringify(obj));
+    location.href = './login.html';
+  } else {
+    alert("Error saving on localStorage");
+    window.localStorage.clear();
+  }
+}
+
+    </script>
+</body>
+</html>
